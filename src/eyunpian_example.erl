@@ -17,19 +17,19 @@ multi_send() ->
     eyunpian_sms:multi_send(?MOBILES, [?TEXT, ?TEXT1]).
 
 get_reply() ->
-    %eyunpian_sms:get_reply("15102025006", "2013-08-11 00:00:00", "2013-08-12 00:00:00").
-    Datas = #{apikey => "yunpian_api_key",
-              start_time => "2016-10-18 00:00:00",
-              end_time => "2016-10-20 00:00:00",
-              %mobile => "15102025006"
-              page_num => 1,
-              page_size => 20
-             },
-    eyunpian_sms:get_reply(Datas).
+    eyunpian_sms:get_reply("15102025006", "2016-10-11 00:00:00", "2016-10-21 00:00:00").
+    %Datas = #{apikey => "yunpian_api_key",
+    %          start_time => "2016-10-18 00:00:00",
+    %          end_time => "2016-10-20 00:00:00",
+    %          %mobile => "15102025006"
+    %          page_num => 1,
+    %          page_size => 20
+    %         },
+    %eyunpian_sms:get_reply(Datas).
 
 
 get_record() ->
-    eyunpian_sms:get_record("15102025006", "2013-08-11 00:00:00", "2013-08-12 00:00:00").
+    eyunpian_sms:get_record("15102025006", "2016-10-18 00:00:00", "2016-10-21 00:00:00").
 
 get_black_word() ->
-    eyunpian_sms:get_black_word("这是一条测试发票短信").
+    eyunpian_sms:get_black_word(unicode:characters_to_binary("这是一条测试屏蔽词，AV女")).
