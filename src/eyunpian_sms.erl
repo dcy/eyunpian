@@ -25,7 +25,7 @@ single_send(Apikey, Mobile, Text) when is_binary(Mobile) andalso is_binary(Text)
     Result = eutil:http_post(URL, ?URLENCEDED_HEADS, Datas, [{pool, ?POOL}]),
     case maps:get(<<"code">>, Result) of
         ?SUCCESS_0 ->
-            ok;
+            {ok, Result};
         Code ->
             ?ERROR_MSG("eyunpian_sms single_send error, Mobile: ~p, Result: ~p", [Mobile, Result]),
             {error, Result}
@@ -47,7 +47,7 @@ batch_send(Apikey, Mobiles, Text) when is_binary(Mobiles) andalso is_binary(Text
             ?ERROR_MSG("eyunpian_sms batch_send error, Mobiles: ~p, Result: ~p", [Mobiles, Result]),
             {error, Result};
         _ ->
-            ok
+            {ok, Result}
     end.
 
 
@@ -64,9 +64,9 @@ multi_send(Apikey, Mobiles, Texts) when is_binary(Mobiles) andalso is_binary(Tex
     case maps:get(<<"data">>, Result, undefined) of
         undefined ->
             ?ERROR_MSG("eyunpian_sms multi_send error, Mobiles: ~p, Result: ~p", [Mobiles, Result]),
-            {error, maps:get(<<"code">>, Result)};
+            {error, Result};
         _ ->
-            ok
+            {ok, Result}
     end.
 
 
