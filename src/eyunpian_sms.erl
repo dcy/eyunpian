@@ -28,7 +28,7 @@ single_send(Apikey, Mobile, Text) when is_binary(Mobile) andalso is_binary(Text)
             ok;
         Code ->
             ?ERROR_MSG("eyunpian_sms single_send error, Mobile: ~p, Result: ~p", [Mobile, Result]),
-            {error, Code}
+            {error, Result}
     end.
 
 
@@ -45,7 +45,7 @@ batch_send(Apikey, Mobiles, Text) when is_binary(Mobiles) andalso is_binary(Text
     case maps:get(<<"data">>, Result, undefined) of
         undefined ->
             ?ERROR_MSG("eyunpian_sms batch_send error, Mobiles: ~p, Result: ~p", [Mobiles, Result]),
-            {error, maps:get(<<"code">>, Result)};
+            {error, Result};
         _ ->
             ok
     end.
